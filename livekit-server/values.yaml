@@ -10,6 +10,22 @@ image:
 
 imagePullSecrets: []
 
+# Extra environment variables for the livekit-server container.
+# Use this to inject secrets via valueFrom.secretKeyRef without baking
+# them into the plaintext ConfigMap. LiveKit substitutes ${VAR} in its
+# YAML config at startup, so you can reference these from livekit.* below.
+extraEnv: []
+# - name: REDIS_PASSWORD
+#   valueFrom:
+#     secretKeyRef:
+#       name: my-redis-secret
+#       key: password
+
+# Extra envFrom sources (e.g. envFrom an existing Secret in bulk).
+extraEnvFrom: []
+# - secretRef:
+#     name: livecircle-external-env-secrets
+
 terminationGracePeriodSeconds: 18000
 
 # configuration for livekit
